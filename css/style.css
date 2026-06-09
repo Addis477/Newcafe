@@ -1,24 +1,24 @@
 /* ============================================
-   GENET RESTAURANT - COMPLETE STYLESHEET
+   GENET RESTAURANT - WARM SUNSET THEME
    Authentic Ethiopian Cuisine
-   Brown & Gold Theme | Fully Responsive
+   Terracotta & Amber Theme | Fully Responsive
    ============================================ */
 
 :root {
     --white: #FFFFFF;
-    --bg-light: #FFF8F0;
-    --gray-light: #F0E6D8;
-    --gray-mid: #E0D0C0;
-    --text-dark: #3E1F0D;
-    --text-muted: #8B6340;
-    --primary-brown: #8B4513;
-    --primary-gold: #D4A34B;
-    --primary-red: #A0522D;
-    --green-primary: #4CAF50;
-    --green-dark: #388E3C;
+    --bg-light: #FDF8F0;
+    --gray-light: #F5E6D3;
+    --gray-mid: #E8D5B7;
+    --text-dark: #3D2B1A;
+    --text-muted: #8B6B3E;
+    --primary-brown: #C2571A;
+    --primary-gold: #E8A317;
+    --primary-red: #D45A2B;
+    --green-primary: #5A8F4C;
+    --green-dark: #3D6B2E;
     --whatsapp-green: #25D366;
-    --shadow: 0 4px 15px rgba(0,0,0,0.1);
-    --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
+    --shadow: 0 8px 25px rgba(194, 87, 26, 0.12);
+    --shadow-hover: 0 15px 35px rgba(194, 87, 26, 0.2);
     --transition: all 0.3s ease;
 }
 
@@ -49,7 +49,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #8B4513, #D4A34B);
+    background: linear-gradient(135deg, #C2571A, #E8A317);
     z-index: 9999;
     pointer-events: none;
     opacity: 0;
@@ -125,13 +125,13 @@ body {
 
 /* ========== HEADER ========== */
 .main-header {
-    background: rgba(139, 69, 19, 0.98);
+    background: rgba(194, 87, 26, 0.98);
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(212, 163, 75, 0.3);
+    border-bottom: 1px solid rgba(232, 163, 23, 0.3);
 }
 
 .main-header .container {
@@ -147,7 +147,7 @@ body {
 
 .logo h1 {
     font-size: 1.4rem;
-    background: linear-gradient(135deg, #FFD700, #D4A34B);
+    background: linear-gradient(135deg, #E8A317, #C2571A);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -156,7 +156,7 @@ body {
 
 .logo span {
     font-size: 0.7rem;
-    color: #FFD700;
+    color: #E8A317;
     letter-spacing: 1px;
 }
 
@@ -174,7 +174,7 @@ body {
 
 .desktop-nav a:hover,
 .desktop-nav a.active {
-    color: #FFD700;
+    color: #E8A317;
 }
 
 /* ========== MOBILE SIDEBAR ========== */
@@ -183,7 +183,7 @@ body {
     background: none;
     border: none;
     font-size: 1.6rem;
-    color: #FFD700;
+    color: #E8A317;
     cursor: pointer;
 }
 
@@ -211,7 +211,7 @@ body {
     left: 0;
     width: 280px;
     height: 100%;
-    background: #2A1508;
+    background: #2A1808;
     z-index: 999;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
@@ -226,14 +226,14 @@ body {
 
 .sidebar-header {
     padding: 24px 20px;
-    border-bottom: 1px solid rgba(212, 163, 75, 0.2);
+    border-bottom: 1px solid rgba(232, 163, 23, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .sidebar-header h3 {
-    color: #FFD700;
+    color: #E8A317;
     font-family: 'Playfair Display', serif;
 }
 
@@ -255,7 +255,7 @@ body {
 
 .sidebar-nav a {
     text-decoration: none;
-    color: #FDF8F2;
+    color: #FDF8F0;
     padding: 12px;
     display: flex;
     align-items: center;
@@ -266,18 +266,18 @@ body {
 
 .sidebar-nav a i {
     width: 24px;
-    color: #FFD700;
+    color: #E8A317;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a.active {
-    background: rgba(212, 163, 75, 0.2);
-    color: #FFD700;
+    background: rgba(232, 163, 23, 0.2);
+    color: #E8A317;
 }
 
 .sidebar-footer {
     padding: 20px;
-    border-top: 1px solid rgba(212, 192, 168, 0.2);
+    border-top: 1px solid rgba(232, 163, 23, 0.2);
     font-size: 0.7rem;
     color: #D4C0A8;
     line-height: 1.8;
@@ -285,7 +285,7 @@ body {
 
 .sidebar-footer i {
     width: 24px;
-    color: #FFD700;
+    color: #E8A317;
 }
 
 /* ========== HERO SECTION ========== */
@@ -325,7 +325,7 @@ body {
 }
 
 .hero-content h1 .highlight {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
+    background: linear-gradient(135deg, #E8A317, #FF8C42);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -344,18 +344,19 @@ body {
 }
 
 .hero-btn {
-    background: linear-gradient(135deg, #D4A34B, #FFD700);
-    color: #8B4513;
+    background: linear-gradient(135deg, #C2571A, #E8A317);
+    color: white;
     padding: 12px 32px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(194, 87, 26, 0.3);
 }
 
 .hero-btn-secondary {
     background: transparent;
-    border: 2px solid #FFD700;
+    border: 2px solid #E8A317;
     color: white;
     padding: 12px 32px;
     border-radius: 50px;
@@ -371,7 +372,7 @@ body {
 
 /* ========== SIMPLE CATEGORY NAVIGATION ========== */
 .category-wrapper {
-    background: linear-gradient(135deg, #FFF8F0 0%, #F5EDE3 100%);
+    background: linear-gradient(135deg, #FDF8F0 0%, #F5E6D3 100%);
     padding: 15px 0;
     margin: 20px 0 10px;
     border-radius: 60px;
@@ -393,16 +394,16 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #8B6340;
+    color: #8B6B3E;
     position: relative;
 }
 
 .simple-cat-btn:hover {
-    color: #8B4513;
+    color: #C2571A;
 }
 
 .simple-cat-btn.active {
-    color: #8B4513;
+    color: #C2571A;
     font-weight: 600;
 }
 
@@ -413,7 +414,7 @@ body {
     left: 0;
     width: 100%;
     height: 3px;
-    background: #8B4513;
+    background: #C2571A;
     border-radius: 3px;
 }
 
@@ -431,14 +432,14 @@ body {
     overflow: hidden;
     transition: var(--transition);
     box-shadow: var(--shadow);
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
     position: relative;
 }
 
 .menu-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
-    border-color: #8B4513;
+    border-color: #E8A317;
 }
 
 .menu-card-img {
@@ -456,8 +457,8 @@ body {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: linear-gradient(135deg, #D4A34B, #FFD700);
-    color: #8B4513;
+    background: linear-gradient(135deg, #E8A317, #C2571A);
+    color: white;
     padding: 4px 12px;
     border-radius: 30px;
     font-size: 0.7rem;
@@ -474,26 +475,26 @@ body {
 
 .menu-card-content h3 {
     font-size: 1.2rem;
-    color: #8B4513;
+    color: #C2571A;
     font-family: 'Playfair Display', serif;
     margin-bottom: 4px;
 }
 
 .menu-card-content h4 {
     font-size: 0.9rem;
-    color: #8B6340;
+    color: #8B6B3E;
     margin-bottom: 8px;
 }
 
 .menu-card-content p {
-    color: #8B6340;
+    color: #8B6B3E;
     font-size: 0.85rem;
     margin-bottom: 12px;
     line-height: 1.5;
 }
 
 .menu-card-price {
-    color: #8B4513;
+    color: #C2571A;
     font-weight: 700;
     font-size: 1.3rem;
     margin: 10px 0;
@@ -503,21 +504,21 @@ body {
 .payment-placeholder {
     margin: 50px 0 30px;
     padding: 30px;
-    background: linear-gradient(135deg, #FFF8F0, #F5EDE3);
+    background: linear-gradient(135deg, #FDF8F0, #F5E6D3);
     border-radius: 24px;
     text-align: center;
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
 }
 
 .payment-placeholder-content i {
     font-size: 2.5rem;
-    color: #8B4513;
+    color: #C2571A;
     margin-bottom: 15px;
 }
 
 .payment-placeholder-content h3 {
     font-size: 1.3rem;
-    color: #8B4513;
+    color: #C2571A;
     margin-bottom: 15px;
 }
 
@@ -537,8 +538,8 @@ body {
     background: white;
     border-radius: 40px;
     font-size: 0.85rem;
-    color: #8B4513;
-    border: 1px solid #E8DCCC;
+    color: #C2571A;
+    border: 1px solid #E8D5B7;
 }
 
 .payment-icons i {
@@ -547,7 +548,7 @@ body {
 }
 
 .payment-placeholder-content p {
-    color: #8B6340;
+    color: #8B6B3E;
     font-size: 0.85rem;
     margin-top: 10px;
 }
@@ -567,7 +568,7 @@ body {
     text-align: center;
     padding: 20px;
     box-shadow: var(--shadow);
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
     transition: var(--transition);
 }
 
@@ -585,23 +586,23 @@ body {
 
 .preview-card h3 {
     margin: 15px 0 5px;
-    color: #8B4513;
+    color: #C2571A;
 }
 
 .preview-card p {
-    color: #8B6340;
+    color: #8B6B3E;
     font-size: 0.85rem;
 }
 
 .preview-card .price {
-    color: #8B4513;
+    color: #C2571A;
     font-weight: 700;
     margin: 10px 0;
 }
 
 .view-all-btn {
     display: inline-block;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
+    background: linear-gradient(135deg, #C2571A, #E8A317);
     color: white;
     padding: 12px 32px;
     border-radius: 40px;
@@ -626,7 +627,7 @@ body {
     font-size: 2rem;
     margin: 50px 0 30px;
     font-family: 'Playfair Display', serif;
-    color: #8B4513;
+    color: #C2571A;
     position: relative;
 }
 
@@ -638,14 +639,14 @@ body {
     transform: translateX(-50%);
     width: 70px;
     height: 3px;
-    background: linear-gradient(90deg, #8B4513, #D4A34B);
+    background: linear-gradient(90deg, #C2571A, #E8A317);
     border-radius: 3px;
 }
 
 /* ========== FEATURES SECTION ========== */
 .features-section {
     padding: 60px 0;
-    background: #FFF8F0;
+    background: #FDF8F0;
 }
 
 .features-grid {
@@ -660,7 +661,7 @@ body {
     background: white;
     border-radius: 20px;
     transition: var(--transition);
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
 }
 
 .feature-card:hover {
@@ -670,7 +671,7 @@ body {
 
 .feature-card i {
     font-size: 2.5rem;
-    color: #8B4513;
+    color: #C2571A;
     margin-bottom: 15px;
 }
 
@@ -680,7 +681,7 @@ body {
 }
 
 .feature-card p {
-    color: #8B6340;
+    color: #8B6B3E;
     font-size: 0.85rem;
 }
 
@@ -702,7 +703,7 @@ body {
     text-align: center;
     border-radius: 20px;
     box-shadow: var(--shadow);
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
     transition: var(--transition);
 }
 
@@ -714,7 +715,7 @@ body {
 .icon-circle {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
+    background: linear-gradient(135deg, #C2571A, #E8A317);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -729,7 +730,7 @@ body {
 
 .contact-card h3 {
     margin-bottom: 8px;
-    color: #8B4513;
+    color: #C2571A;
 }
 
 .social-icons {
@@ -771,7 +772,7 @@ body {
 /* ========== PAYMENT SECTION (CONTACT PAGE) ========== */
 .payment-section {
     padding: 40px 0;
-    background: linear-gradient(135deg, #FFF8F0, #F5EDE3);
+    background: linear-gradient(135deg, #FDF8F0, #F5E6D3);
     border-radius: 30px;
     margin: 30px 0;
 }
@@ -790,7 +791,7 @@ body {
     text-align: center;
     border-radius: 20px;
     box-shadow: var(--shadow);
-    border: 1px solid #E8DCCC;
+    border: 1px solid #E8D5B7;
     transition: var(--transition);
 }
 
@@ -801,27 +802,27 @@ body {
 
 .payment-box i {
     font-size: 2.5rem;
-    color: #8B4513;
+    color: #C2571A;
     margin-bottom: 15px;
 }
 
 .payment-box h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #8B4513;
+    color: #C2571A;
 }
 
 .account-number {
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #D4A34B;
+    color: #E8A317;
     margin: 10px 0;
 }
 
 /* ========== CONTACT FORM ========== */
 .contact-form {
-    background: #FFF8F0;
+    background: #FDF8F0;
     padding: 40px;
     border-radius: 30px;
     box-shadow: var(--shadow);
@@ -830,7 +831,7 @@ body {
 .contact-form h3 {
     text-align: center;
     margin-bottom: 25px;
-    color: #8B4513;
+    color: #C2571A;
     font-size: 1.5rem;
 }
 
@@ -844,7 +845,7 @@ body {
 input, textarea, select {
     width: 100%;
     padding: 14px 16px;
-    border: 1px solid #D4C0A8;
+    border: 1px solid #E8D5B7;
     border-radius: 16px;
     font-family: 'Inter', sans-serif;
     transition: var(--transition);
@@ -852,12 +853,12 @@ input, textarea, select {
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: #8B4513;
-    box-shadow: 0 0 0 3px rgba(139,69,19,0.1);
+    border-color: #C2571A;
+    box-shadow: 0 0 0 3px rgba(194, 87, 26, 0.1);
 }
 
 button {
-    background: linear-gradient(135deg, #8B4513, #A0522D);
+    background: linear-gradient(135deg, #C2571A, #E8A317);
     color: white;
     border: none;
     padding: 14px 28px;
@@ -875,8 +876,8 @@ button:hover {
 
 /* ========== FOOTER ========== */
 .main-footer {
-    background: #1A0A04;
-    color: #D4C0A8;
+    background: #1A0E06;
+    color: #E8D5B7;
     padding: 50px 0 20px;
     margin-top: 60px;
 }
@@ -891,7 +892,7 @@ button:hover {
 .footer-logo {
     font-size: 1.4rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #FFD700, #D4A34B);
+    background: linear-gradient(135deg, #E8A317, #C2571A);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -901,12 +902,12 @@ button:hover {
 
 .tagline {
     font-size: 0.8rem;
-    color: #FFD700;
+    color: #E8A317;
     margin-bottom: 15px;
 }
 
 .footer-col h4 {
-    color: #FFD700;
+    color: #E8A317;
     margin-bottom: 15px;
     font-size: 1rem;
 }
@@ -920,13 +921,13 @@ button:hover {
 }
 
 .footer-col ul li a {
-    color: #D4C0A8;
+    color: #E8D5B7;
     text-decoration: none;
     transition: var(--transition);
 }
 
 .footer-col ul li a:hover {
-    color: #FFD700;
+    color: #E8A317;
     padding-left: 5px;
 }
 
@@ -945,14 +946,14 @@ button:hover {
     align-items: center;
     justify-content: center;
     transition: var(--transition);
-    color: #D4C0A8;
+    color: #E8D5B7;
     text-decoration: none;
 }
 
 .social-links a:hover {
-    background: #D4A34B;
+    background: #E8A317;
     transform: translateY(-3px);
-    color: #1A0A04;
+    color: #1A0E06;
 }
 
 .footer-bottom {
@@ -964,7 +965,7 @@ button:hover {
 
 .footer-heart {
     margin-top: 5px;
-    color: #FFD700;
+    color: #E8A317;
 }
 
 /* ========== TOAST NOTIFICATION ========== */
@@ -973,7 +974,7 @@ button:hover {
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: linear-gradient(135deg, #8B4513, #A0522D);
+    background: linear-gradient(135deg, #C2571A, #E8A317);
     color: white;
     padding: 12px 28px;
     border-radius: 50px;
@@ -985,18 +986,6 @@ button:hover {
 
 .toast-msg.show {
     transform: translateX(-50%) translateY(0);
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
