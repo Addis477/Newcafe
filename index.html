@@ -4,162 +4,842 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="GENET RESTAURANT - Authentic Ethiopian Cuisine. Digital Menu - View our delicious tibs, stews, coffee, and more.">
-    <meta name="theme-color" content="#8B4513">
+    <meta name="theme-color" content="#C0392B">
     <title>GENET RESTAURANT | Digital Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --bg-light: #FFF5EC;
+            --gray-light: #FDEBD0;
+            --gray-mid: #FAD7A1;
+            --text-dark: #2C1810;
+            --text-muted: #7D5A3C;
+            --primary-brown: #C0392B;
+            --primary-gold: #F39C12;
+            --primary-red: #E67E22;
+            --green-primary: #4CAF50;
+            --green-dark: #388E3C;
+            --whatsapp-green: #25D366;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== PAGE TRANSITION ========== */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #C0392B, #F39C12);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* ========== WHATSAPP FLOATING BUTTON ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20b859;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ========== HERO OVERLAYS ========== */
+        .hero-overlay-brighter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+
+        /* ========== HEADER ========== */
+        .main-header {
+            background: rgba(192, 57, 43, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo a {
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #F1C40F, #F39C12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            font-size: 0.7rem;
+            color: #F1C40F;
+            letter-spacing: 1px;
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: #FFF5EC;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .desktop-nav a:hover,
+        .desktop-nav a.active {
+            color: #F1C40F;
+        }
+
+        /* ========== MOBILE SIDEBAR ========== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: #F1C40F;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: #2A1508;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            color: #F1C40F;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #E8C88A;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: #FFF5EC;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .sidebar-nav a i {
+            width: 24px;
+            color: #F1C40F;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(243, 156, 18, 0.2);
+            color: #F1C40F;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(232, 200, 138, 0.2);
+            font-size: 0.7rem;
+            color: #E8C88A;
+            line-height: 1.8;
+        }
+
+        .sidebar-footer i {
+            width: 24px;
+            color: #F1C40F;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #F1C40F, #E67E22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, #F39C12, #F1C40F);
+            color: #C0392B;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .hero-btn-secondary {
+            background: transparent;
+            border: 2px solid #F1C40F;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .hero-btn:hover,
+        .hero-btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ========== PREVIEW GRID (HOME PAGE) ========== */
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid #FAD7A1;
+            transition: var(--transition);
+        }
+
+        .preview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .preview-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .preview-card h3 {
+            margin: 15px 0 5px;
+            color: #C0392B;
+        }
+
+        .preview-card p {
+            color: #7D5A3C;
+            font-size: 0.85rem;
+        }
+
+        .preview-card .price {
+            color: #C0392B;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #C0392B, #E67E22);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin: 20px 0;
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* ========== SECTION TITLES ========== */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 50px 0 30px;
+            font-family: 'Playfair Display', serif;
+            color: #C0392B;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, #C0392B, #F39C12);
+            border-radius: 3px;
+        }
+
+        /* ========== FEATURES SECTION ========== */
+        .features-section {
+            padding: 60px 0;
+            background: #FFF5EC;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid #FAD7A1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #C0392B;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #7D5A3C;
+            font-size: 0.85rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .main-footer {
+            background: #1A0A04;
+            color: #E8C88A;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F1C40F, #F39C12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            color: #F1C40F;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: #F1C40F;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #E8C88A;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: #F1C40F;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.7rem;
+        }
+
+        .footer-heart {
+            margin-top: 5px;
+            color: #F1C40F;
+        }
+
+        /* ========== TOAST NOTIFICATION ========== */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #C0392B, #E67E22);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            z-index: 2000;
+            transition: transform 0.3s;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 900px) {
+            .desktop-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero {
+                min-height: 400px;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="page-transition"></div>
+    <div class="page-transition"></div>
 
-<!-- Mobile Sidebar -->
-<div class="mobile-sidebar" id="mobileSidebar">
-    <div class="sidebar-header">
-        <h3>🍛 GENET RESTAURANT</h3>
-        <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="sidebar-nav">
-        <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-        <a href="menu.html"><i class="fas fa-utensils"></i> Digital Menu</a>
-        <a href="contact.html"><i class="fas fa-map-pin"></i> Contact</a>
-    </div>
-    <div class="sidebar-footer">
-        <p><i class="fas fa-phone-alt"></i> +251 900 000 000</p>
-        <p><i class="fas fa-envelope"></i> info@genetrestaurant.com</p>
-        <p><i class="fas fa-location-dot"></i> Addis Ababa, Ethiopia</p>
-    </div>
-</div>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<!-- Header -->
-<header class="main-header">
-    <div class="container">
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-        <div class="logo">
-            <a href="index.html">
-                <h1>🍛 GENET RESTAURANT</h1>
-                <span>Authentic Ethiopian Cuisine</span>
-            </a>
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h3>🍛 GENET RESTAURANT</h3>
+            <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
         </div>
-        <nav class="desktop-nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="menu.html">Digital Menu</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<main>
-    <!-- Hero Section -->
-    <section class="hero" data-aos="fade-up">
-        <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=1920&h=800&fit=crop');"></div>
-        <div class="hero-overlay-brighter"></div>
-        <div class="container hero-content">
-            <h1>Welcome to <span class="highlight">GENET RESTAURANT</span> 🍛</h1>
-            <p>Authentic Ethiopian Flavors, Made with Love</p>
-            <div class="hero-buttons">
-                <a href="menu.html" class="hero-btn">View Digital Menu →</a>
-                <a href="contact.html" class="hero-btn-secondary">Contact Us</a>
-            </div>
+        <div class="sidebar-nav">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="menu.html"><i class="fas fa-utensils"></i> Digital Menu</a>
+            <a href="contact.html"><i class="fas fa-map-pin"></i> Contact</a>
         </div>
-    </section>
+        <div class="sidebar-footer">
+            <p><i class="fas fa-phone-alt"></i> +251 900 000 000</p>
+            <p><i class="fas fa-envelope"></i> info@genetrestaurant.com</p>
+            <p><i class="fas fa-location-dot"></i> Addis Ababa, Ethiopia</p>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Features -->
-    <section class="features-section" data-aos="fade-up">
+    <!-- Header -->
+    <header class="main-header">
         <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Traditional Recipes</h3>
-                    <p>Authentic Ethiopian flavors passed down through generations</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Fresh Ingredients</h3>
-                    <p>Daily sourced, premium quality ingredients</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Fast Service</h3>
-                    <p>Ready in 30 minutes or less</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Digital Menu</h3>
-                    <p>View our complete menu online</p>
-                </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🍛 GENET RESTAURANT</h1>
+                    <span>Authentic Ethiopian Cuisine</span>
+                </a>
             </div>
+            <nav class="desktop-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Digital Menu</a>
+                <a href="contact.html">Contact</a>
+            </nav>
         </div>
-    </section>
+    </header>
 
-    <!-- Popular Items Preview -->
-    <section class="container" data-aos="fade-up">
-        <h2 class="section-title">🍛 Popular Dishes</h2>
-        <div class="preview-grid">
-            <div class="preview-card">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" alt="Tibs">
-                <h3>ጥብስ / Tibs</h3>
-                <p>Sautéed meat with peppers</p>
-                <div class="price">ETB 550</div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" data-aos="fade-up">
+            <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=1920&h=800&fit=crop');"></div>
+            <div class="hero-overlay-brighter"></div>
+            <div class="container hero-content">
+                <h1>Welcome to <span class="highlight">GENET RESTAURANT</span> 🍛</h1>
+                <p>Authentic Ethiopian Flavors, Made with Love</p>
+                <div class="hero-buttons">
+                    <a href="menu.html" class="hero-btn">View Digital Menu →</a>
+                    <a href="contact.html" class="hero-btn-secondary">Contact Us</a>
+                </div>
             </div>
-            <div class="preview-card">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" alt="Key Wat">
-                <h3>ቀይ ወጥ / Key Wat</h3>
-                <p>Spicy red stew</p>
-                <div class="price">ETB 430</div>
-            </div>
-            <div class="preview-card">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" alt="Coffee">
-                <h3>ቡና / Coffee</h3>
-                <p>Traditional Ethiopian coffee</p>
-                <div class="price">ETB 50</div>
-            </div>
-        </div>
-        <div class="text-center">
-            <a href="menu.html" class="view-all-btn">View Full Menu →</a>
-        </div>
-    </section>
-</main>
+        </section>
 
-<!-- Footer -->
-<footer class="main-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">🍛 GENET RESTAURANT</div>
-                <p class="tagline">Authentic Ethiopian Cuisine</p>
-                <p>Traditional Flavors<br>Addis Ababa, Ethiopia</p>
+        <!-- Features -->
+        <section class="features-section" data-aos="fade-up">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Traditional Recipes</h3>
+                        <p>Authentic Ethiopian flavors passed down through generations</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Fresh Ingredients</h3>
+                        <p>Daily sourced, premium quality ingredients</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Fast Service</h3>
+                        <p>Ready in 30 minutes or less</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Digital Menu</h3>
+                        <p>View our complete menu online</p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html">Digital Menu</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Hours</h4>
-                <ul><li>Mon-Sat: 8am-10pm</li><li>Sun: 9am-9pm</li></ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul><li><i class="fas fa-phone"></i> +251 900 000 000</li></ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 GENET RESTAURANT — Authentic Ethiopian Cuisine</p>
-            <p class="footer-heart">✨ Taste of Ethiopia, made with love ✨</p>
-        </div>
-    </div>
-</footer>
+        </section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/main.js"></script>
-<script>
-    AOS.init({ duration: 800, once: true, offset: 100 });
-</script>
+        <!-- Popular Items Preview -->
+        <section class="container" data-aos="fade-up">
+            <h2 class="section-title">🍛 Popular Dishes</h2>
+            <div class="preview-grid">
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" alt="Tibs">
+                    <h3>ጥብስ / Tibs</h3>
+                    <p>Sautéed meat with peppers</p>
+                    <div class="price">ETB 550</div>
+                </div>
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" alt="Key Wat">
+                    <h3>ቀይ ወጥ / Key Wat</h3>
+                    <p>Spicy red stew</p>
+                    <div class="price">ETB 430</div>
+                </div>
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" alt="Coffee">
+                    <h3>ቡና / Coffee</h3>
+                    <p>Traditional Ethiopian coffee</p>
+                    <div class="price">ETB 50</div>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="menu.html" class="view-all-btn">View Full Menu →</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">🍛 GENET RESTAURANT</div>
+                    <p class="tagline">Authentic Ethiopian Cuisine</p>
+                    <p>Traditional Flavors<br>Addis Ababa, Ethiopia</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Digital Menu</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hours</h4>
+                    <ul><li>Mon-Sat: 8am-10pm</li><li>Sun: 9am-9pm</li></ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul><li><i class="fas fa-phone"></i> +251 900 000 000</li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GENET RESTAURANT — Authentic Ethiopian Cuisine</p>
+                <p class="footer-heart">✨ Taste of Ethiopia, made with love ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/251900000000" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Order via WhatsApp</span>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast-msg" id="toast">Message sent successfully!</div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // Mobile Sidebar Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+
+        function openSidebar() {
+            mobileSidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            mobileSidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        mobileMenuBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar when a nav link is clicked
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+    </script>
 </body>
 </html>
