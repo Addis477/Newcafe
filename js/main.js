@@ -1,34 +1,64 @@
 /* ============================================
    GENET RESTAURANT - COMPLETE JAVASCRIPT
-   Authentic Ethiopian Cuisine
+   Fixed: Smooth back navigation, no refresh issues
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ========== PAGE TRANSITIONS ==========
-    const transitionOverlay = document.querySelector('.page-transition');
+    // ========== FIXED: SMOOTH PAGE TRANSITIONS (No Refresh Issues) ==========
+    // Store current page to prevent duplicate transitions
+    let isTransitioning = false;
+    let currentPageUrl = window.location.pathname.split('/').pop() || 'index.html';
     
+    // Function to handle navigation with smooth transition
+    function navigateTo(url) {
+        if (isTransitioning) return;
+        if (url === currentPageUrl) return;
+        
+        isTransitioning = true;
+        
+        // Add transition class
+        const transitionOverlay = document.querySelector('.page-transition');
+        if (transitionOverlay) {
+            transitionOverlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        } else {
+            window.location.href = url;
+        }
+    }
+    
+    // Handle all internal navigation links
     document.querySelectorAll('a').forEach(link => {
         const href = link.getAttribute('href');
         if (href && href !== '#' && !href.startsWith('http') && !href.startsWith('https') && !href.startsWith('tel') && !href.startsWith('mailto') && !href.startsWith('javascript')) {
+            // Skip WhatsApp button
             if (!link.classList.contains('whatsapp-float')) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetUrl = this.getAttribute('href');
-                    if (transitionOverlay) {
-                        transitionOverlay.classList.add('active');
-                        setTimeout(() => { window.location.href = targetUrl; }, 500);
-                    } else {
-                        window.location.href = targetUrl;
-                    }
+                    navigateTo(href);
                 });
             }
         }
     });
     
+    // Remove transition overlay when page loads
+    const transitionOverlay = document.querySelector('.page-transition');
     if (transitionOverlay) {
-        setTimeout(() => { transitionOverlay.classList.remove('active'); }, 100);
+        setTimeout(() => {
+            transitionOverlay.classList.remove('active');
+        }, 100);
     }
+    
+    // Fix for browser back/forward buttons - remove transition overlay
+    window.addEventListener('pageshow', function() {
+        if (transitionOverlay) {
+            transitionOverlay.classList.remove('active');
+        }
+        isTransitioning = false;
+        currentPageUrl = window.location.pathname.split('/').pop() || 'index.html';
+    });
     
     // ========== AOS INITIALIZATION ==========
     if (typeof AOS !== 'undefined') {
