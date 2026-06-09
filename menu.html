@@ -4,516 +4,1232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="GENET RESTAURANT Menu - Authentic Ethiopian Tibs, Stews, Coffee & More">
-    <meta name="theme-color" content="#8B4513">
+    <meta name="theme-color" content="#C0392B">
     <title>Our Menu | GENET RESTAURANT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --bg-light: #FFF5EC;
+            --gray-light: #FDEBD0;
+            --gray-mid: #FAD7A1;
+            --text-dark: #2C1810;
+            --text-muted: #7D5A3C;
+            --primary-brown: #C0392B;
+            --primary-gold: #F39C12;
+            --primary-red: #E67E22;
+            --green-primary: #4CAF50;
+            --green-dark: #388E3C;
+            --whatsapp-green: #25D366;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== PAGE TRANSITION ========== */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #C0392B, #F39C12);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* ========== WHATSAPP FLOATING BUTTON ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20b859;
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ========== HERO OVERLAYS ========== */
+        .hero-overlay-brighter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        /* ========== HEADER ========== */
+        .main-header {
+            background: rgba(192, 57, 43, 0.98);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .logo a {
+            text-decoration: none;
+        }
+
+        .logo h1 {
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #FFF5EC, #FDEBD0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            font-size: 0.7rem;
+            color: #FDEBD0;
+            letter-spacing: 1px;
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: #FFF5EC;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .desktop-nav a:hover,
+        .desktop-nav a.active {
+            color: #F1C40F;
+        }
+
+        /* ========== MOBILE SIDEBAR ========== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: #F1C40F;
+            cursor: pointer;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: #2A1508;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            color: #F1C40F;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #E8C88A;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: #FFF5EC;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .sidebar-nav a i {
+            width: 24px;
+            color: #F1C40F;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            background: rgba(243, 156, 18, 0.2);
+            color: #F1C40F;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(232, 200, 138, 0.2);
+            font-size: 0.7rem;
+            color: #E8C88A;
+            line-height: 1.8;
+        }
+
+        .sidebar-footer i {
+            width: 24px;
+            color: #F1C40F;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #F1C40F, #E67E22);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========== CATEGORY NAVIGATION ========== */
+        .category-wrapper {
+            background: linear-gradient(135deg, #FFF5EC 0%, #FDEBD0 100%);
+            padding: 15px 0;
+            margin: 20px 0 10px;
+            border-radius: 60px;
+            box-shadow: var(--shadow);
+        }
+
+        .simple-category-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .simple-cat-btn {
+            background: none;
+            border: none;
+            padding: 8px 0;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #7D5A3C;
+            position: relative;
+        }
+
+        .simple-cat-btn:hover {
+            color: #C0392B;
+        }
+
+        .simple-cat-btn.active {
+            color: #C0392B;
+            font-weight: 600;
+        }
+
+        .simple-cat-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #C0392B;
+            border-radius: 3px;
+        }
+
+        /* ========== MENU GRID & CARDS ========== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid #FAD7A1;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: #C0392B;
+        }
+
+        .menu-card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.03);
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #F39C12, #F1C40F);
+            color: #C0392B;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .menu-card-content {
+            padding: 20px;
+        }
+
+        .menu-card-header {
+            margin-bottom: 8px;
+        }
+
+        .menu-card-content h3 {
+            font-size: 1.2rem;
+            color: #C0392B;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 4px;
+        }
+
+        .menu-card-content h4 {
+            font-size: 0.9rem;
+            color: #7D5A3C;
+            margin-bottom: 8px;
+        }
+
+        .menu-card-content p {
+            color: #7D5A3C;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .menu-card-price {
+            color: #C0392B;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        /* ========== PAYMENT PLACEHOLDER ========== */
+        .payment-placeholder {
+            margin: 50px 0 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #FFF5EC, #FDEBD0);
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #FAD7A1;
+            box-shadow: var(--shadow);
+        }
+
+        .payment-placeholder-content i {
+            font-size: 2.5rem;
+            color: #C0392B;
+            margin-bottom: 15px;
+        }
+
+        .payment-placeholder-content h3 {
+            font-size: 1.3rem;
+            color: #C0392B;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-icons span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #C0392B;
+            border: 1px solid #FAD7A1;
+            transition: var(--transition);
+        }
+
+        .payment-icons span:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .payment-icons i {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .payment-placeholder-content p {
+            color: #7D5A3C;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* ========== FOOTER ========== */
+        .main-footer {
+            background: #1A0A04;
+            color: #E8C88A;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F1C40F, #F39C12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            color: #F1C40F;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: #F1C40F;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: #E8C88A;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: #F1C40F;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.7rem;
+        }
+
+        .footer-heart {
+            margin-top: 5px;
+            color: #F1C40F;
+        }
+
+        /* ========== TOAST NOTIFICATION ========== */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #C0392B, #E67E22);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            z-index: 2000;
+            transition: transform 0.3s;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-msg.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 900px) {
+            .desktop-nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                min-height: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .simple-category-nav {
+                gap: 12px;
+            }
+            .simple-cat-btn {
+                font-size: 0.8rem;
+                padding: 6px 0;
+            }
+            .simple-cat-btn.active::after {
+                bottom: -8px;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .payment-icons {
+                gap: 10px;
+            }
+            .payment-icons span {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero {
+                min-height: 250px;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .simple-category-nav {
+                gap: 8px;
+            }
+            .simple-cat-btn {
+                font-size: 0.7rem;
+            }
+            .payment-placeholder {
+                padding: 20px;
+            }
+            .payment-icons span {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+            .category-wrapper {
+                border-radius: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="page-transition"></div>
+    <div class="page-transition"></div>
 
-<!-- Mobile Sidebar -->
-<div class="mobile-sidebar" id="mobileSidebar">
-    <div class="sidebar-header">
-        <h3>🍛 GENET RESTAURANT</h3>
-        <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="sidebar-nav">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="menu.html" class="active"><i class="fas fa-utensils"></i> Our Menu</a>
-        <a href="contact.html"><i class="fas fa-map-pin"></i> Contact</a>
-    </div>
-    <div class="sidebar-footer">
-        <p><i class="fas fa-phone-alt"></i> +251 900 000 000</p>
-        <p><i class="fas fa-location-dot"></i> Addis Ababa, Ethiopia</p>
-    </div>
-</div>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<!-- Header -->
-<header class="main-header">
-    <div class="container">
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-        <div class="logo">
-            <a href="index.html">
-                <h1>🍛 GENET RESTAURANT</h1>
-                <span>Authentic Ethiopian Cuisine</span>
-            </a>
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h3>🍛 GENET RESTAURANT</h3>
+            <button class="close-sidebar" id="closeSidebarBtn"><i class="fas fa-times"></i></button>
         </div>
-        <nav class="desktop-nav">
-            <a href="index.html">Home</a>
-            <a href="menu.html" class="active">Our Menu</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<main>
-    <!-- Hero Section -->
-    <section class="hero" data-aos="fade-up">
-        <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=1920&h=800&fit=crop');"></div>
-        <div class="hero-overlay-brighter"></div>
-        <div class="container hero-content">
-            <h1>Our <span class="highlight">Menu</span> 🍛</h1>
-            <p>Authentic Ethiopian flavors, freshly prepared daily</p>
+        <div class="sidebar-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="menu.html" class="active"><i class="fas fa-utensils"></i> Our Menu</a>
+            <a href="contact.html"><i class="fas fa-map-pin"></i> Contact</a>
         </div>
-    </section>
-
-    <!-- Category Filters -->
-    <div class="category-wrapper" data-aos="fade-up" data-aos-delay="100">
-        <div class="simple-category-nav">
-            <button class="simple-cat-btn active" data-cat="all">🍽️ All Dishes</button>
-            <button class="simple-cat-btn" data-cat="tibs-wot">🍖 ጥብስ & ወጥ / Tibs & Stews</button>
-            <button class="simple-cat-btn" data-cat="beverages">☕ ትኩስ ነገር / Hot Beverages</button>
-            <button class="simple-cat-btn" data-cat="drinks">🥤 መጠጥ / Soft Drinks</button>
+        <div class="sidebar-footer">
+            <p><i class="fas fa-phone-alt"></i> +251 900 000 000</p>
+            <p><i class="fas fa-location-dot"></i> Addis Ababa, Ethiopia</p>
         </div>
     </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Menu Items Grid -->
-    <section class="container" data-aos="fade-up" data-aos-delay="200">
-        <div class="menu-grid" id="menuGrid">
-            
-            <!-- ========== TIBS & STEWS SECTION ========== -->
-            <!-- Item 1 - Tibs -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-badge">ተወዳጅ / Popular</div>
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ጥብስ</h3>
-                        <h4>Tibs (Sautéed meat)</h4>
-                    </div>
-                    <p>Tender sautéed beef or lamb with onions, peppers, and Ethiopian spices</p>
-                    <div class="menu-card-price">ETB 550</div>
-                </div>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+            <div class="logo">
+                <a href="index.html">
+                    <h1>🍛 GENET RESTAURANT</h1>
+                    <span>Authentic Ethiopian Cuisine</span>
+                </a>
             </div>
+            <nav class="desktop-nav">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Our Menu</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-            <!-- Item 2 - Qey Qul -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ቅቅል</h3>
-                        <h4>Qey Qul (Spicy stew)</h4>
-                    </div>
-                    <p>Rich, spicy beef stew simmered with berbere and Ethiopian butter</p>
-                    <div class="menu-card-price">ETB 460</div>
-                </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" data-aos="fade-up">
+            <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=1920&h=800&fit=crop');"></div>
+            <div class="hero-overlay-brighter"></div>
+            <div class="container hero-content">
+                <h1>Our <span class="highlight">Menu</span> 🍛</h1>
+                <p>Authentic Ethiopian flavors, freshly prepared daily</p>
             </div>
+        </section>
 
-            <!-- Item 3 - Key Wat -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ቀይ ወጥ</h3>
-                        <h4>Key Wat (Red Stew)</h4>
-                    </div>
-                    <p>Classic Ethiopian red stew with berbere, onions, and garlic</p>
-                    <div class="menu-card-price">ETB 430</div>
-                </div>
-            </div>
-
-            <!-- Item 4 - Quanta Firfir (ENGLISH ONLY - Removed Amharic) -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-badge">ልዩ / Special</div>
-                <div class="menu-card-content">
-                    <h3>Quanta Firfir (Spiced dried beef)</h3>
-                    <p>Dried beef mixed with berbere and served with injera</p>
-                    <div class="menu-card-price">ETB 360</div>
-                </div>
-            </div>
-
-            <!-- Item 5 - Tibs Firfir (ENGLISH ONLY - Removed Amharic) -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <h3>Tibs Firfir</h3>
-                    <p>Spiced tibs mixed with torn injera pieces</p>
-                    <div class="menu-card-price">ETB 350</div>
-                </div>
-            </div>
-
-            <!-- Item 6 - Falut (ENGLISH ONLY - Removed Amharic) -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <h3>Falut (Special salad platter)</h3>
-                    <p>Fresh salad platter with avocado, tomatoes, and special dressing</p>
-                    <div class="menu-card-price">ETB 350</div>
-                </div>
-            </div>
-
-            <!-- Item 7 - Gomen Besiga -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ጎመን በስጋ</h3>
-                        <h4>Gomen Besiga (Collard greens with meat)</h4>
-                    </div>
-                    <p>Collard greens slow-cooked with beef and spices</p>
-                    <div class="menu-card-price">ETB 350</div>
-                </div>
-            </div>
-
-            <!-- Item 8 - Minchet Abish -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ምንችት</h3>
-                        <h4>Minchet Abish (Minced beef stew)</h4>
-                    </div>
-                    <p>Finely minced beef stew with berbere and Ethiopian spices</p>
-                    <div class="menu-card-price">ETB 350</div>
-                </div>
-            </div>
-
-            <!-- Item 9 - Tahiro -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ጣህር</h3>
-                        <h4>Tahiro (Simple stew)</h4>
-                    </div>
-                    <p>Light, comforting stew perfect with injera</p>
-                    <div class="menu-card-price">ETB 300</div>
-                </div>
-            </div>
-
-            <!-- Item 10 - Shiro beT'et -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ሽሮ በትጥ</h3>
-                        <h4>Shiro beT'et (Chickpea with spice)</h4>
-                    </div>
-                    <p>Creamy chickpea stew with Ethiopian spices</p>
-                    <div class="menu-card-price">ETB 270</div>
-                </div>
-            </div>
-
-            <!-- Item 11 - Firfir beT'et -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ፍርፍር በትጥ</h3>
-                        <h4>Firfir beT'et (Kita firfir)</h4>
-                    </div>
-                    <p>Spiced injera or kita pieces mixed with berbere</p>
-                    <div class="menu-card-price">ETB 280</div>
-                </div>
-            </div>
-
-            <!-- Item 12 - Ermija Quanta -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-badge">ልዩ / Special</div>
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>እርምጃ ቋንብ</h3>
-                        <h4>Ermija Quanta (Dried beef specialty)</h4>
-                    </div>
-                    <p>Traditional dried beef preparation with unique spices</p>
-                    <div class="menu-card-price">ETB 360</div>
-                </div>
-            </div>
-
-            <!-- Item 13 - Enset Besiga -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>እንት በስጋ</h3>
-                        <h4>Enset Besiga (Meat with enset)</h4>
-                    </div>
-                    <p>Meat prepared with enset (false banana plant)</p>
-                    <div class="menu-card-price">ETB 300</div>
-                </div>
-            </div>
-
-            <!-- Item 14 - Yefiha Yefesk -->
-            <div class="menu-card" data-cat="tibs-wot">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>የፍሃ የፍስክ</h3>
-                        <h4>Yefiha Yefesk (Special mixed platter)</h4>
-                    </div>
-                    <p>A delicious mix of various Ethiopian specialties</p>
-                    <div class="menu-card-price">ETB 370</div>
-                </div>
-            </div>
-
-            <!-- ========== HOT BEVERAGES SECTION ========== -->
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ሻይ</h3>
-                        <h4>Tea (Shai)</h4>
-                    </div>
-                    <p>Traditional Ethiopian spiced tea</p>
-                    <div class="menu-card-price">ETB 40</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ቡና የማሽን</h3>
-                        <h4>Machine Coffee</h4>
-                    </div>
-                    <p>Freshly brewed machine coffee</p>
-                    <div class="menu-card-price">ETB 60</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ስፕሬስ</h3>
-                        <h4>Spress (Espresso)</h4>
-                    </div>
-                    <p>Rich, bold Italian-style espresso</p>
-                    <div class="menu-card-price">ETB 60</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ወተት</h3>
-                        <h4>Wotet (Milk)</h4>
-                    </div>
-                    <p>Fresh, warm milk</p>
-                    <div class="menu-card-price">ETB 90</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ማካያት</h3>
-                        <h4>Macchiato</h4>
-                    </div>
-                    <p>Espresso with a touch of steamed milk</p>
-                    <div class="menu-card-price">ETB 90</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-badge">ባህላዊ / Traditional</div>
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>የደበና ቡና</h3>
-                        <h4>Yedebena Buna (Traditional coffee)</h4>
-                    </div>
-                    <p>Authentic Ethiopian coffee ceremony style</p>
-                    <div class="menu-card-price">ETB 50</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ስፕሬስ ሻይ</h3>
-                        <h4>Spress Shai (Tea with espresso)</h4>
-                    </div>
-                    <p>Unique combination of tea and espresso</p>
-                    <div class="menu-card-price">ETB 120</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ለውዝ</h3>
-                        <h4>Luz (Almond drink)</h4>
-                    </div>
-                    <p>Creamy almond-based traditional drink</p>
-                    <div class="menu-card-price">ETB 100</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ፍልሽር ሻይ</h3>
-                        <h4>Felesher Shai (Spiced tea)</h4>
-                    </div>
-                    <p>Tea infused with cardamom, cinnamon, and cloves</p>
-                    <div class="menu-card-price">ETB 70</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ተሸር</h3>
-                        <h4>Teshér (Cardamom coffee)</h4>
-                    </div>
-                    <p>Coffee with aromatic cardamom</p>
-                    <div class="menu-card-price">ETB 50</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="beverages">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ሻይ በሎሚ</h3>
-                        <h4>Shai belomi (Lemon tea)</h4>
-                    </div>
-                    <p>Refreshing tea with fresh lemon</p>
-                    <div class="menu-card-price">ETB 50</div>
-                </div>
-            </div>
-
-            <!-- ========== SOFT DRINKS SECTION ========== -->
-            <div class="menu-card" data-cat="drinks">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ውሃ ነገር ለትር</h3>
-                        <h4>Water (Small bottle)</h4>
-                    </div>
-                    <p>500ml bottled water</p>
-                    <div class="menu-card-price">ETB 40</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="drinks">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ውሃ ለትር</h3>
-                        <h4>Water (1 liter)</h4>
-                    </div>
-                    <p>1 liter bottled water</p>
-                    <div class="menu-card-price">ETB 50</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="drinks">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ውሃ ለትር (ትልቅ)</h3>
-                        <h4>Water (Large liter)</h4>
-                    </div>
-                    <p>1.5 liter bottled water</p>
-                    <div class="menu-card-price">ETB 60</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="drinks">
-                <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>ለስላሳ</h3>
-                        <h4>Soft drink (Coke, Sprite, etc.)</h4>
-                    </div>
-                    <p>Choice of Coca-Cola, Sprite, Fanta, or Pepsi</p>
-                    <div class="menu-card-price">ETB 60</div>
-                </div>
-            </div>
-
-            <div class="menu-card" data-cat="drinks">
-                <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img">
-                <div class="menu-card-content">
-                    <div class="menu-card-header">
-                        <h3>አምባ ውሃ</h3>
-                        <h4>Amba Water (Sparkling)</h4>
-                    </div>
-                    <p>Carbonated mineral water</p>
-                    <div class="menu-card-price">ETB 60</div>
-                </div>
+        <!-- Category Filters -->
+        <div class="category-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <div class="simple-category-nav">
+                <button class="simple-cat-btn active" data-cat="all">🍽️ All Dishes</button>
+                <button class="simple-cat-btn" data-cat="tibs-wot">🍖 ጥብስ & ወጥ / Tibs & Stews</button>
+                <button class="simple-cat-btn" data-cat="beverages">☕ ትኩስ ነገር / Hot Beverages</button>
+                <button class="simple-cat-btn" data-cat="drinks">🥤 መጠጥ / Soft Drinks</button>
             </div>
         </div>
 
-        <!-- Payment Placeholder Below Menu Items -->
-        <div class="payment-placeholder">
-            <div class="payment-placeholder-content">
-                <i class="fas fa-credit-card"></i>
-                <h3>Payment Methods</h3>
-                <div class="payment-icons">
-                    <span><i class="fas fa-mobile-alt"></i> Telebirr</span>
-                    <span><i class="fas fa-university"></i> Nigd Bank</span>
-                    <span><i class="fas fa-money-bill-wave"></i> Cash</span>
+        <!-- Menu Items Grid -->
+        <section class="container" data-aos="fade-up" data-aos-delay="200">
+            <div class="menu-grid" id="menuGrid">
+
+                <!-- ========== TIBS & STEWS ========== -->
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Tibs">
+                    <div class="menu-card-badge">ተወዳጅ / Popular</div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ጥብስ</h3>
+                            <h4>Tibs (Sautéed meat)</h4>
+                        </div>
+                        <p>Tender sautéed beef or lamb with onions, peppers, and Ethiopian spices</p>
+                        <div class="menu-card-price">ETB 550</div>
+                    </div>
                 </div>
-                <p>We accept Telebirr, Nigd Bank transfer, and cash on delivery</p>
-            </div>
-        </div>
-    </section>
-</main>
 
-<!-- Footer -->
-<footer class="main-footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">🍛 GENET RESTAURANT</div>
-                <p class="tagline">Authentic Ethiopian Cuisine</p>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="menu.html">Our Menu</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li><i class="fas fa-phone"></i> +251 900 000 000</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 GENET RESTAURANT — Authentic Ethiopian Cuisine 🍛</p>
-        </div>
-    </div>
-</footer>
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Qey Qul">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ቅቅል</h3>
+                            <h4>Qey Qul (Spicy stew)</h4>
+                        </div>
+                        <p>Rich, spicy beef stew simmered with berbere and Ethiopian butter</p>
+                        <div class="menu-card-price">ETB 460</div>
+                    </div>
+                </div>
 
-<div id="toastMsg" class="toast-msg">✓ Added to cart</div>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/main.js"></script>
-<script>
-    AOS.init({ duration: 800, once: true, offset: 100 });
-    
-    // Category Filter
-    const catBtns = document.querySelectorAll('.simple-cat-btn');
-    const menuCards = document.querySelectorAll('.menu-card');
-    
-    catBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            catBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const cat = this.getAttribute('data-cat');
-            menuCards.forEach(card => {
-                card.style.display = (cat === 'all' || card.getAttribute('data-cat') === cat) ? 'block' : 'none';
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Key Wat">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ቀይ ወጥ</h3>
+                            <h4>Key Wat (Red Stew)</h4>
+                        </div>
+                        <p>Classic Ethiopian red stew with berbere, onions, and garlic</p>
+                        <div class="menu-card-price">ETB 430</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Quanta Firfir">
+                    <div class="menu-card-badge">ልዩ / Special</div>
+                    <div class="menu-card-content">
+                        <h3>Quanta Firfir</h3>
+                        <p>Spiced dried beef mixed with berbere and served with injera</p>
+                        <div class="menu-card-price">ETB 360</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Tibs Firfir">
+                    <div class="menu-card-content">
+                        <h3>Tibs Firfir</h3>
+                        <p>Spiced tibs mixed with torn injera pieces</p>
+                        <div class="menu-card-price">ETB 350</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Falut">
+                    <div class="menu-card-content">
+                        <h3>Falut</h3>
+                        <p>Fresh salad platter with avocado, tomatoes, and special dressing</p>
+                        <div class="menu-card-price">ETB 350</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Gomen Besiga">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ጎመን በስጋ</h3>
+                            <h4>Gomen Besiga (Collard greens with meat)</h4>
+                        </div>
+                        <p>Collard greens slow-cooked with beef and spices</p>
+                        <div class="menu-card-price">ETB 350</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Minchet Abish">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ምንችት</h3>
+                            <h4>Minchet Abish (Minced beef stew)</h4>
+                        </div>
+                        <p>Finely minced beef stew with berbere and Ethiopian spices</p>
+                        <div class="menu-card-price">ETB 350</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Tahiro">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ጣህር</h3>
+                            <h4>Tahiro (Simple stew)</h4>
+                        </div>
+                        <p>Light, comforting stew perfect with injera</p>
+                        <div class="menu-card-price">ETB 300</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Shiro beT'et">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ሽሮ በትጥ</h3>
+                            <h4>Shiro beT'et (Chickpea with spice)</h4>
+                        </div>
+                        <p>Creamy chickpea stew with Ethiopian spices</p>
+                        <div class="menu-card-price">ETB 270</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Firfir beT'et">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ፍርፍር በትጥ</h3>
+                            <h4>Firfir beT'et (Kita firfir)</h4>
+                        </div>
+                        <p>Spiced injera or kita pieces mixed with berbere</p>
+                        <div class="menu-card-price">ETB 280</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Ermija Quanta">
+                    <div class="menu-card-badge">ልዩ / Special</div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>እርምጃ ቋንብ</h3>
+                            <h4>Ermija Quanta (Dried beef specialty)</h4>
+                        </div>
+                        <p>Traditional dried beef preparation with unique spices</p>
+                        <div class="menu-card-price">ETB 360</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Enset Besiga">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>እንት በስጋ</h3>
+                            <h4>Enset Besiga (Meat with enset)</h4>
+                        </div>
+                        <p>Meat prepared with enset (false banana plant)</p>
+                        <div class="menu-card-price">ETB 300</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="tibs-wot">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Yefiha Yefesk">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>የፍሃ የፍስክ</h3>
+                            <h4>Yefiha Yefesk (Special mixed platter)</h4>
+                        </div>
+                        <p>A delicious mix of various Ethiopian specialties</p>
+                        <div class="menu-card-price">ETB 370</div>
+                    </div>
+                </div>
+
+                <!-- ========== HOT BEVERAGES ========== -->
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Tea">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ሻይ</h3>
+                            <h4>Tea (Shai)</h4>
+                        </div>
+                        <p>Traditional Ethiopian spiced tea</p>
+                        <div class="menu-card-price">ETB 40</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Machine Coffee">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ቡና የማሽን</h3>
+                            <h4>Machine Coffee</h4>
+                        </div>
+                        <p>Freshly brewed machine coffee</p>
+                        <div class="menu-card-price">ETB 60</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Spress">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ስፕሬስ</h3>
+                            <h4>Spress (Espresso)</h4>
+                        </div>
+                        <p>Rich, bold Italian-style espresso</p>
+                        <div class="menu-card-price">ETB 60</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Wotet">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ወተት</h3>
+                            <h4>Wotet (Milk)</h4>
+                        </div>
+                        <p>Fresh, warm milk</p>
+                        <div class="menu-card-price">ETB 90</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Macchiato">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ማካያት</h3>
+                            <h4>Macchiato</h4>
+                        </div>
+                        <p>Espresso with a touch of steamed milk</p>
+                        <div class="menu-card-price">ETB 90</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Yedebena Buna">
+                    <div class="menu-card-badge">ባህላዊ / Traditional</div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>የደበና ቡና</h3>
+                            <h4>Yedebena Buna (Traditional coffee)</h4>
+                        </div>
+                        <p>Authentic Ethiopian coffee ceremony style</p>
+                        <div class="menu-card-price">ETB 50</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Spress Shai">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ስፕሬስ ሻይ</h3>
+                            <h4>Spress Shai (Tea with espresso)</h4>
+                        </div>
+                        <p>Unique combination of tea and espresso</p>
+                        <div class="menu-card-price">ETB 120</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Luz">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ለውዝ</h3>
+                            <h4>Luz (Almond drink)</h4>
+                        </div>
+                        <p>Creamy almond-based traditional drink</p>
+                        <div class="menu-card-price">ETB 100</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Felesher Shai">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ፍልሽር ሻይ</h3>
+                            <h4>Felesher Shai (Spiced tea)</h4>
+                        </div>
+                        <p>Tea infused with cardamom, cinnamon, and cloves</p>
+                        <div class="menu-card-price">ETB 70</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Teshér">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ተሸር</h3>
+                            <h4>Teshér (Cardamom coffee)</h4>
+                        </div>
+                        <p>Coffee with aromatic cardamom</p>
+                        <div class="menu-card-price">ETB 50</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="beverages">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Shai belomi">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ሻይ በሎሚ</h3>
+                            <h4>Shai belomi (Lemon tea)</h4>
+                        </div>
+                        <p>Refreshing tea with fresh lemon</p>
+                        <div class="menu-card-price">ETB 50</div>
+                    </div>
+                </div>
+
+                <!-- ========== SOFT DRINKS ========== -->
+                <div class="menu-card" data-cat="drinks">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Water Small">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ውሃ ነገር ለትር</h3>
+                            <h4>Water (Small bottle)</h4>
+                        </div>
+                        <p>500ml bottled water</p>
+                        <div class="menu-card-price">ETB 40</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="drinks">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Water 1L">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ውሃ ለትር</h3>
+                            <h4>Water (1 liter)</h4>
+                        </div>
+                        <p>1 liter bottled water</p>
+                        <div class="menu-card-price">ETB 50</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="drinks">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Water Large">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ውሃ ለትር (ትልቅ)</h3>
+                            <h4>Water (Large liter)</h4>
+                        </div>
+                        <p>1.5 liter bottled water</p>
+                        <div class="menu-card-price">ETB 60</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="drinks">
+                    <img src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Soft Drink">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>ለስላሳ</h3>
+                            <h4>Soft drink (Coke, Sprite, etc.)</h4>
+                        </div>
+                        <p>Choice of Coca-Cola, Sprite, Fanta, or Pepsi</p>
+                        <div class="menu-card-price">ETB 60</div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-cat="drinks">
+                    <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?w=400&h=300&fit=crop" class="menu-card-img" alt="Amba Water">
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>አምባ ውሃ</h3>
+                            <h4>Amba Water (Sparkling)</h4>
+                        </div>
+                        <p>Carbonated mineral water</p>
+                        <div class="menu-card-price">ETB 60</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Placeholder -->
+            <div class="payment-placeholder" data-aos="fade-up">
+                <div class="payment-placeholder-content">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Payment Methods</h3>
+                    <div class="payment-icons">
+                        <span><i class="fas fa-mobile-alt"></i> Telebirr</span>
+                        <span><i class="fas fa-university"></i> Nigd Bank</span>
+                        <span><i class="fas fa-money-bill-wave"></i> Cash</span>
+                    </div>
+                    <p>We accept Telebirr, Nigd Bank transfer, and cash on delivery</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">🍛 GENET RESTAURANT</div>
+                    <p class="tagline">Authentic Ethiopian Cuisine</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Our Menu</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +251 900 000 000</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GENET RESTAURANT — Authentic Ethiopian Cuisine 🍛</p>
+                <p class="footer-heart">✨ Taste of Ethiopia, made with love ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/251900000000" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Order via WhatsApp</span>
+    </a>
+
+    <!-- Toast Notification -->
+    <div id="toastMsg" class="toast-msg">✓ Added to cart</div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        // Mobile Sidebar Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+
+        function openSidebar() {
+            mobileSidebar.classList.add('open');
+            sidebarOverlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            mobileSidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        }
+
+        mobileMenuBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Category Filter
+        const catBtns = document.querySelectorAll('.simple-cat-btn');
+        const menuCards = document.querySelectorAll('.menu-card');
+
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                catBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const cat = this.getAttribute('data-cat');
+                menuCards.forEach(card => {
+                    card.style.display = (cat === 'all' || card.getAttribute('data-cat') === cat) ? 'block' : 'none';
+                });
             });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
