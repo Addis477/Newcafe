@@ -1,7 +1,7 @@
 /* ============================================
    GENET RESTAURANT - COMPLETE STYLESHEET
    Authentic Ethiopian Cuisine
-   Premium Design like MAMI SWEETS
+   Brown & Gold Theme | Fully Responsive
    ============================================ */
 
 :root {
@@ -11,9 +11,9 @@
     --gray-mid: #E0D0C0;
     --text-dark: #3E1F0D;
     --text-muted: #8B6340;
-    --primary-red: #8B0000;
-    --primary-gold: #D4A34B;
     --primary-brown: #8B4513;
+    --primary-gold: #D4A34B;
+    --primary-red: #A0522D;
     --green-primary: #4CAF50;
     --green-dark: #388E3C;
     --whatsapp-green: #25D366;
@@ -53,7 +53,7 @@ body {
     z-index: 9999;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
 }
 
 .page-transition.active {
@@ -177,23 +177,6 @@ body {
     color: #FFD700;
 }
 
-.btn-order {
-    background: linear-gradient(135deg, #D4A34B, #FFD700);
-    color: #8B4513;
-    padding: 8px 22px;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    transition: var(--transition);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.btn-order:hover {
-    transform: scale(0.96);
-    opacity: 0.9;
-}
-
 /* ========== MOBILE SIDEBAR ========== */
 .mobile-menu-btn {
     display: none;
@@ -292,17 +275,6 @@ body {
     color: #FFD700;
 }
 
-.sidebar-order-btn {
-    margin: 20px;
-    background: linear-gradient(135deg, #D4A34B, #FFD700);
-    color: #8B4513;
-    text-decoration: none;
-    padding: 14px;
-    text-align: center;
-    border-radius: 40px;
-    font-weight: 600;
-}
-
 .sidebar-footer {
     padding: 20px;
     border-top: 1px solid rgba(212, 192, 168, 0.2);
@@ -365,16 +337,52 @@ body {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.hero-btn {
+    background: linear-gradient(135deg, #D4A34B, #FFD700);
+    color: #8B4513;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.hero-btn-secondary {
+    background: transparent;
+    border: 2px solid #FFD700;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.hero-btn:hover,
+.hero-btn-secondary:hover {
+    transform: translateY(-3px);
+}
+
 /* ========== SIMPLE CATEGORY NAVIGATION ========== */
+.category-wrapper {
+    background: linear-gradient(135deg, #FFF8F0 0%, #F5EDE3 100%);
+    padding: 15px 0;
+    margin: 20px 0 10px;
+    border-radius: 60px;
+}
+
 .simple-category-nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    margin: 30px 0 40px;
     padding: 0 20px;
-    border-bottom: 2px solid #E8DCCC;
-    padding-bottom: 15px;
 }
 
 .simple-cat-btn {
@@ -401,7 +409,7 @@ body {
 .simple-cat-btn.active::after {
     content: '';
     position: absolute;
-    bottom: -17px;
+    bottom: -10px;
     left: 0;
     width: 100%;
     height: 3px;
@@ -468,6 +476,7 @@ body {
     font-size: 1.2rem;
     color: #8B4513;
     font-family: 'Playfair Display', serif;
+    margin-bottom: 4px;
 }
 
 .menu-card-content h4 {
@@ -490,23 +499,125 @@ body {
     margin: 10px 0;
 }
 
-.order-btn {
+/* ========== PAYMENT PLACEHOLDER ========== */
+.payment-placeholder {
+    margin: 50px 0 30px;
+    padding: 30px;
+    background: linear-gradient(135deg, #FFF8F0, #F5EDE3);
+    border-radius: 24px;
+    text-align: center;
+    border: 1px solid #E8DCCC;
+}
+
+.payment-placeholder-content i {
+    font-size: 2.5rem;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.payment-placeholder-content h3 {
+    font-size: 1.3rem;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.payment-icons span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    color: #8B4513;
+    border: 1px solid #E8DCCC;
+}
+
+.payment-icons i {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.payment-placeholder-content p {
+    color: #8B6340;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+/* ========== PREVIEW GRID (HOME PAGE) ========== */
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.preview-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid #E8DCCC;
+    transition: var(--transition);
+}
+
+.preview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.preview-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.preview-card h3 {
+    margin: 15px 0 5px;
+    color: #8B4513;
+}
+
+.preview-card p {
+    color: #8B6340;
+    font-size: 0.85rem;
+}
+
+.preview-card .price {
+    color: #8B4513;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.view-all-btn {
     display: inline-block;
     background: linear-gradient(135deg, #8B4513, #A0522D);
     color: white;
-    padding: 8px 20px;
+    padding: 12px 32px;
     border-radius: 40px;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.85rem;
+    font-weight: 600;
     transition: var(--transition);
-    width: 100%;
-    text-align: center;
+    margin: 20px 0;
 }
 
-.order-btn:hover {
-    transform: translateX(5px);
-    background: #A0522D;
+.view-all-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* ========== SECTION TITLES ========== */
@@ -529,6 +640,48 @@ body {
     height: 3px;
     background: linear-gradient(90deg, #8B4513, #D4A34B);
     border-radius: 3px;
+}
+
+/* ========== FEATURES SECTION ========== */
+.features-section {
+    padding: 60px 0;
+    background: #FFF8F0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    transition: var(--transition);
+    border: 1px solid #E8DCCC;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #8B4513;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #8B6340;
+    font-size: 0.85rem;
 }
 
 /* ========== CONTACT SECTION ========== */
@@ -615,7 +768,7 @@ body {
     margin: 30px 0;
 }
 
-/* ========== PAYMENT SECTION ========== */
+/* ========== PAYMENT SECTION (CONTACT PAGE) ========== */
 .payment-section {
     padding: 40px 0;
     background: linear-gradient(135deg, #FFF8F0, #F5EDE3);
@@ -664,23 +817,6 @@ body {
     letter-spacing: 1px;
     color: #D4A34B;
     margin: 10px 0;
-}
-
-.qr-placeholder {
-    margin-top: 15px;
-    padding: 15px;
-    background: #F5EDE3;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: #8B4513;
-}
-
-.qr-placeholder i {
-    font-size: 1.5rem;
-    margin: 0;
 }
 
 /* ========== CONTACT FORM ========== */
@@ -819,36 +955,6 @@ button:hover {
     color: #1A0A04;
 }
 
-.contact-info li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.contact-info li i {
-    width: 22px;
-    color: #FFD700;
-}
-
-.payment-badge {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.payment-badge span {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 0.7rem;
-    color: #FFD700;
-}
-
-.payment-badge i {
-    font-size: 1.2rem;
-    margin-right: 8px;
-}
-
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
@@ -895,7 +1001,7 @@ button:hover {
 
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 900px) {
-    .desktop-nav, .btn-order {
+    .desktop-nav {
         display: none;
     }
     .mobile-menu-btn {
@@ -921,10 +1027,20 @@ button:hover {
         padding: 6px 0;
     }
     .simple-cat-btn.active::after {
-        bottom: -15px;
+        bottom: -8px;
     }
     .menu-grid {
         grid-template-columns: 1fr;
+    }
+    .preview-grid {
+        grid-template-columns: 1fr;
+    }
+    .payment-icons {
+        gap: 10px;
+    }
+    .payment-icons span {
+        padding: 6px 12px;
+        font-size: 0.75rem;
     }
 }
 
@@ -941,6 +1057,12 @@ button:hover {
     }
     .hero {
         min-height: 400px;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
     }
     .toast-msg {
         white-space: normal;
@@ -959,6 +1081,13 @@ button:hover {
         gap: 8px;
     }
     .simple-cat-btn {
+        font-size: 0.7rem;
+    }
+    .payment-placeholder {
+        padding: 20px;
+    }
+    .payment-icons span {
+        padding: 5px 10px;
         font-size: 0.7rem;
     }
 }
